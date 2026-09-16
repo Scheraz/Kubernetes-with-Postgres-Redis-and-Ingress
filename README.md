@@ -115,9 +115,3 @@ curl http://order-api.local/orders
   container creation time; fixed by forcing a pod restart after config
   changes.
 
-## Roadmap
-
-- [ ] GitOps deployment via ArgoCD
-- [ ] Observability (Prometheus + Grafana)
-- [ ] Cloud migration: AKS, Azure Disk-backed PVs, Azure Key Vault via CSI
-      Secrets Store driver, ACR for image distribution
