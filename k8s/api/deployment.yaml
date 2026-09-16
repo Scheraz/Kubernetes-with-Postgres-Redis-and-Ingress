@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+  creationTimestamp: "2026-09-16T20:21:03Z"
+  generation: 2
+  labels:
+    app: order-api
+  name: order-api
+  namespace: order-app
+  resourceVersion: "6354"
+  uid: 698b18f1-32c9-433e-8810-03ddf4632a28
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: order-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: order-api
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: postgres-secret
+        - configMapRef:
+            name: order-api-config
+        image: order-api:v1
+        imagePullPolicy: IfNotPresent
+        name: order-api
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2026-09-16T20:21:03Z"
+    lastUpdateTime: "2026-09-16T20:24:13Z"
+    message: ReplicaSet "order-api-55b4ccb5d7" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2026-09-16T20:38:35Z"
+    lastUpdateTime: "2026-09-16T20:38:35Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  terminatingReplicas: 0
+  updatedReplicas: 1

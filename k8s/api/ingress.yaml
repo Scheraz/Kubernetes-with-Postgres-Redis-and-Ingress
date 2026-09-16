@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  creationTimestamp: "2026-09-16T20:45:11Z"
+  generation: 1
+  name: order-api-ingress
+  namespace: order-app
+  resourceVersion: "7255"
+  uid: e179787f-6752-4606-8133-c17d424f8c37
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: order-api.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: order-api-svc
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost

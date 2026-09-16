@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  PGDATABASE: orders
+  PGHOST: postgres-svc
+  PGPORT: "5432"
+  PORT: "3000"
+  REDIS_HOST: redis-svc
+  REDIS_PORT: "6379"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-09-16T20:31:14Z"
+  name: order-api-config
+  namespace: order-app
+  resourceVersion: "5417"
+  uid: c6db30df-0208-4462-8b06-e1d92af193d6

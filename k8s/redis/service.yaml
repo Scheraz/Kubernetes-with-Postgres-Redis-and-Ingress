@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2026-09-16T20:16:03Z"
+  labels:
+    app: redis
+  name: redis-svc
+  namespace: order-app
+  resourceVersion: "3636"
+  uid: 2e5123fb-9fc8-456d-8fe5-ae0d22703907
+spec:
+  clusterIP: 10.96.219.13
+  clusterIPs:
+  - 10.96.219.13
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
