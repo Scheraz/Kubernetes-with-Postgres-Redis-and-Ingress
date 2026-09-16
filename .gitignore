@@ -1,0 +1,3 @@
+node_modules/
+*.log
+k8s/**/secret*.yaml
